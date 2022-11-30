@@ -2,18 +2,12 @@ import { useEffect, useState } from "react";
 import Formulario from "./Formulario";
 import Todo from "./Todo";
 
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
+
 const TodoList = () => {
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(initialStateTodos);
 
     useEffect(() => {
-        console.log("Leer todos local");
-        if (localStorage.getItem("todos")) {
-            setTodos(JSON.parse(localStorage.getItem("todos")));
-        }
-    }, []);
-
-    useEffect(() => {
-        console.log("Guardar todo local");
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
 
